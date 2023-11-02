@@ -49,10 +49,10 @@ If you have any questions or concerns, please connect with us via [Discord](http
 
 **2023**
 
-* January 26, 2023
-* April 27, 2023
-* July 27, 2023
-* October 26, 2023
+* January 26, 2023 - Completed&#x20;
+* April 27, 2023 - Skipped&#x20;
+* July 27, 2023 - Completed
+* October 26, 2023 - Skipped
 
 ### Test Network Throttles
 
