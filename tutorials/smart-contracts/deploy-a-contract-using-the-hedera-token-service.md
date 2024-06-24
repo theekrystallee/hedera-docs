@@ -33,9 +33,9 @@ The HTS.sol will serve as a reference to the contract that was compiled. The HTS
 
 To write a contract using HTS, you will need to add the HTS Solidity support libraries to your project and import them into your contract. Please see the HTS.sol example for reference. The IHederaTokenService.sol will need to be in the same directory as the other two files. An explanation of the functions can be found [here](../../sdks-and-apis/sdks/smart-contracts/hedera-service-solidity-libraries.md).
 
-* [HederaTokenService.sol](https://github.com/hashgraph/hedera-smart-contracts/tree/main/contracts/precompile/hedera-token-service)
-* [HederaResponseCodes.sol](https://github.com/hashgraph/hedera-smart-contracts/tree/main/contracts/precompile)
-* [IHederaTokenService.sol](https://github.com/hashgraph/hedera-smart-contracts/tree/main/contracts/precompile/hedera-token-service)
+* [HederaTokenService.sol](https://github.com/hashgraph/hedera-smart-contracts/blob/main/contracts/hts-precompile/HederaTokenService.sol)
+* [HederaResponseCodes.sol](https://github.com/hashgraph/hedera-smart-contracts/blob/main/contracts/hts-precompile/HederaResponseCodes.sol)
+* [IHederaTokenService.sol](https://github.com/hashgraph/hedera-smart-contracts/blob/main/contracts/hts-precompile/IHederaTokenService.sol)
 
 {% tabs %}
 {% tab title="HTS.sol" %}
@@ -1378,4 +1378,4 @@ func main() {
 
 **➡ Feel free to reach out in** [**Discord**](https://hedera.com/discord)**!**
 
-<table data-card-size="large" data-view="cards"><thead><tr><th align="center"></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td align="center"><p>Writer: Simi, Sr. Software Manager </p><p><a href="https://github.com/ed-marquez">GitHub</a> | <a href="https://www.linkedin.com/in/shunjan">LinkedIn</a></p></td><td></td><td></td><td><a href="https://www.linkedin.com/in/shunjan">https://www.linkedin.com/in/shunjan </a></td></tr><tr><td align="center"><p>Editor: Krystal, Technical Writer</p><p><a href="https://github.com/theekrystallee">GitHub</a> | <a href="https://twitter.com/theekrystallee">Twitter</a></p></td><td></td><td></td><td><a href="https://twitter.com/theekrystallee">https://twitter.com/theekrystallee</a></td></tr><tr><td align="center"><p>Editor: Lucía, Developer</p><p>(Hashgraph Association)</p><p><a href="https://github.com/luciamunozdev">GitHub</a> | <a href="https://twitter.com/luciamunozdev">Twitter</a></p></td><td></td><td></td><td><a href="https://github.com/luciamunozdev">https://github.com/luciamunozdev</a></td></tr></tbody></table>
+<table data-card-size="large" data-view="cards"><thead><tr><th align="center"></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td align="center"><p>Writer: Simi, Sr. Software Manager</p><p><a href="https://github.com/ed-marquez">GitHub</a> | <a href="https://www.linkedin.com/in/shunjan">LinkedIn</a></p></td><td></td><td></td><td><a href="https://www.linkedin.com/in/shunjan">https://www.linkedin.com/in/shunjan</a></td></tr><tr><td align="center"><p>Editor: Krystal, Technical Writer</p><p><a href="https://github.com/theekrystallee">GitHub</a> | <a href="https://twitter.com/theekrystallee">Twitter</a></p></td><td></td><td></td><td><a href="https://twitter.com/theekrystallee">https://twitter.com/theekrystallee</a></td></tr><tr><td align="center"><p>Editor: Lucía, Developer</p><p>(Hashgraph Association)</p><p><a href="https://github.com/luciamunozdev">GitHub</a> | <a href="https://twitter.com/luciamunozdev">Twitter</a></p></td><td></td><td></td><td><a href="https://github.com/luciamunozdev">https://github.com/luciamunozdev</a></td></tr></tbody></table>

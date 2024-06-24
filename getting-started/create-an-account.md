@@ -284,7 +284,7 @@ public class HederaExamples {
         
         // Set default max transaction fee & max query payment
         client.setDefaultMaxTransactionFee(new Hbar(100)); 
-        client.setDefaultMaxQueryPayment(new Hbar(50)); 
+        client.setMaxQueryPayment(new Hbar(50)); 
         
         // Generate a new key pair
         PrivateKey newAccountPrivateKey = PrivateKey.generateED25519();
@@ -321,11 +321,11 @@ public class HederaExamples {
 {% code title="index.js" %}
 ```javascript
 const {
-  Hbar,
   Client,
   PrivateKey,
-  AccountBalanceQuery,
   AccountCreateTransaction,
+  AccountBalanceQuery,
+  Hbar,
 } = require("@hashgraph/sdk");
 require("dotenv").config();
 
@@ -349,7 +349,7 @@ async function environmentSetup() {
   client.setDefaultMaxTransactionFee(new Hbar(100));
 
   //Set the maximum payment for queries (in Hbar)
-  client.setDefaultMaxQueryPayment(new Hbar(50));
+  client.setMaxQueryPayment(new Hbar(50));
 
   // Create new keys
   const newAccountPrivateKey = PrivateKey.generateED25519();

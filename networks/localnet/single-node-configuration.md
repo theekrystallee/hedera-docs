@@ -10,7 +10,7 @@ Single node configuration simulates the network’s functions on a smaller scale
 
 Ensure the **`VirtioFS`** file sharing implementation is enabled in the docker settings.
 
-![](<../../.gitbook/assets/docker-compose-settings (1).png>)
+<img src="../../.gitbook/assets/docker-compose-settings.png" alt="" data-size="original">
 
 Ensure the following configurations are set at minimum in Docker **Settings** -> **Resources** and are available for use:
 
@@ -22,13 +22,11 @@ Ensure the following configurations are set at minimum in Docker **Settings** ->
 
 **Disk Image Size:** 64 GB
 
-![](../../.gitbook/assets/docker-settings.png)
-
-
+<img src="../../.gitbook/assets/docker settings.png" alt="" data-size="original">
 
 Ensure the **`Allow the default Docker sockets to be used (requires password)`** is enabled in Docker **Settings -> Advanced**.
 
-![](../../.gitbook/assets/docker-socket-setting.png)
+<img src="../../.gitbook/assets/docker-socket-setting.png" alt="" data-size="original">
 
 **Note:** The image may look different if you are on a different version
 
