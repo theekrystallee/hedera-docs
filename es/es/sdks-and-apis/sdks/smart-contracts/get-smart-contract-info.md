@@ -2,8 +2,6 @@
 
 A query that returns the current state of a smart contract instance, including its balance. Queries do not change the state of the smart contract or require network consensus. The information is returned from a single node processing the query.
 
-In Services release 0.50, Returning token balance information from the consensus node was deprecated with HIP-367. This query now returns token information by requesting the information from the Hedera Mirror Node APIs via [/api/v1/accounts/{id}/tokens](https://mainnet-public.mirrornode.hedera.com/api/v1/docs/#/accounts/listTokenRelationshipByAccountId). Token symbol is not returned in the response.
-
 **Smart Contract Info Response**
 
 | Field                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -19,8 +17,8 @@ In Services release 0.50, Returning token balance information from the consensus
 | **Balance**             | The current balance of the contract.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **Deleted**             | Whether the contract has been deleted.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **Ledger ID**           | The ID of the network the response came from. See [HIP-198](https://hips.hedera.com/hip/hip-198).                                                                                                                                                                                                                                                                                                                                                                               |
+| **TokenRelationships**  | The tokens associated to the contract. Deprecated. Please see [HIP-367](https://hips.hedera.com/hip/hip-367).                                                                                                                                                                                                                                                                                                                                                   |
 | **Staking Info**        | <p>The staking metadata for this contract. This includes the staking period start, the pending reward, the account ID or the node ID, whether or not rewards were declined, and how many hbars are staked to this contract account, if any. <a href="https://hips.hedera.com/hip/hip-406">See HIP-406</a>.<br>Live on: <code>previewnet/testnet</code></p>                                                                                                                                                      |
-| **Token Relationships** | The metadata of the tokens associated to the contract.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 **Query Signing Requirements**
 
@@ -29,11 +27,13 @@ In Services release 0.50, Returning token balance information from the consensus
 **Query Fees**
 
 - Please see the transaction and query [fees](../../../networks/mainnet/fees/#transaction-and-query-fees) table for the base transaction fee
-- Please use the [Hedera fee estimator](https://hedera.com/fees) to estimate your query fee&#x20
+- Please use the [Hedera fee estimator](https://hedera.com/fees) to estimate your query fee
 
 ### Methods
 
-<table><thead><tr><th width="346.3333333333333">Method</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>setContractId(<contractId>)</code></td><td>ContractId</td><td>The ID of the smart contract to return the token for</td></tr></tbody></table>
+| Method                        | Type       | Description                                          |
+| ----------------------------- | ---------- | ---------------------------------------------------- |
+| `setContractId(<contractId>)` | ContractId | The ID of the smart contract to return the token for |
 
 {% tabs %}
 {% tab title="Java" %}
