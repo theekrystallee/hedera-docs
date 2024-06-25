@@ -6,70 +6,17 @@ description: Hedera Services release information
 
 Please visit the [Hedera status page](https://status.hedera.com/) for the latest versions supported on each network.
 
-## [v0.51](https://github.com/hashgraph/hedera-services/releases)
-
-{% hint style="info" %}
-**MAINNET UPDATE SCHEDULED: JULY 17, 2024**
-{% endhint %}
-
-{% hint style="info" %}
-**TESTNET UPDATE SCHEDULED: JULY 3, 2024**
-{% endhint %}
-
-## [v0.50](https://github.com/hashgraph/hedera-services/releases/tag/v0.50.0)
-
-{% hint style="success" %}
-**MAINNET UPDATE: JUNE 20, 2024**
-{% endhint %}
-
-{% hint style="success" %}
-**TESTNET UPDATE: JUNE 5, 2024**
-{% endhint %}
-
-### [0.50.1](https://github.com/hashgraph/hedera-services/releases/tag/v0.50.1)
-
-#### What's Changed
-
-- chore: Cherry pick 13648 into release 0.50 branch by [@lukelee-sl](https://github.com/lukelee-sl) in [#13662](https://github.com/hashgraph/hedera-services/pull/13662)
-- fix(ci): cherry pick milestone assignee checks rel 50 by [@rbarkerSL](https://github.com/rbarkerSL) in [#13712](https://github.com/hashgraph/hedera-services/pull/13712)
-- fix: (cherry-pick) Use restart method to all token schemas by [@Neeharika-Sompalli](https://github.com/Neeharika-Sompalli) in [#13676](https://github.com/hashgraph/hedera-services/pull/13676)
-- fix: Enable tokens.balancesInQueries.enabled by [@netopyr](https://github.com/netopyr) in [#13716](https://github.com/hashgraph/hedera-services/pull/13716)
-- chore: Enable tokens.balancesInQueries in code by [@netopyr](https://github.com/netopyr) in [#13769](https://github.com/hashgraph/hedera-services/pull/13769)
-
-**➡ See the full list of changes** [**here**](https://github.com/hashgraph/hedera-services/compare/v0.50.0...v0.50.1)**.**
-
-### [0.50.0](https://github.com/hashgraph/hedera-services/releases/tag/v0.50.0)
-
-#### What's Changed
-
-- feat: reorganize ISS wiring by [@alittley](https://github.com/alittley) in [#11685](https://github.com/hashgraph/hedera-services/pull/11685)
-- feat(diff-testing): Script (python) to pull intervals - up to a day - from GCP by [@david-bakin-sl](https://github.com/david-bakin-sl) in [#11409](https://github.com/hashgraph/hedera-services/pull/11409)
-- fix: 11750 Fixed synchronization in `BreakableDataSource.saveRecords` by [@imalygin](https://github.com/imalygin) in [#11756](https://github.com/hashgraph/hedera-services/pull/11756)
-- feat: Differential testing: Enhance account store dumper to handle modular representation by [@vtronkov](https://github.com/vtronkov) in [#11489](https://github.com/hashgraph/hedera-services/pull/11489)
-- test: add security v2 model tests for token associate by [@anastasiya-kovaliova](https://github.com/anastasiya-kovaliova) in [#11327](https://github.com/hashgraph/hedera-services/pull/11327)
-- fix: stop checking for minimum birth round by [@cody-littley](https://github.com/cody-littley) in [#11769](https://github.com/hashgraph/hedera-services/pull/11769)
-- feat: make the state compatible with birth rounds by [@cody-littley](https://github.com/cody-littley) in [#11780](https://github.com/hashgraph/hedera-services/pull/11780)
-- fix: FilteredLoggingMonitor by [@mxtartaglia-sl](https://github.com/mxtartaglia-sl) in [#11754](https://github.com/hashgraph/hedera-services/pull/11754)
-- feat: diagram tweaks by [@cody-littley](https://github.com/cody-littley) in [#11801](https://github.com/hashgraph/hedera-services/pull/11801)
-- fix: wait longer for freeze transaction to be handled by [@JeffreyDallas](https://github.com/JeffreyDallas) in [#11790](https://github.com/hashgraph/hedera-services/pull/11790)
-
-**➡ See the full list of changes** [**here**](https://github.com/hashgraph/hedera-services/releases/tag/v0.50.0)**.**
-
-### Performance Results
-
-<figure><img src="../../.gitbook/assets/0.50_Performance Measurement Results_Extract.001.png" alt=""><figcaption></figcaption></figure>
-
 ## [v0.49](https://github.com/hashgraph/hedera-services/releases/tag/v0.49.0)
 
-{% hint style="success" %}
-**MAINNET UPDATE: MAY 22, 2024**
+{% hint style="info" %}
+**MAINNET UPDATE SCHEDULED: MAY 21, 2024**
 {% endhint %}
+
+### [0.49.7](https://github.com/hashgraph/hedera-services/releases/tag/v0.49.7)
 
 {% hint style="success" %}
 **TESTNET UPDATE: MAY 14, 2024**
 {% endhint %}
-
-### [0.49.7](https://github.com/hashgraph/hedera-services/releases/tag/v0.49.7)
 
 #### What's Changed
 
@@ -87,11 +34,19 @@ Please visit the [Hedera status page](https://status.hedera.com/) for the latest
 
 ### [0.49.5](https://github.com/hashgraph/hedera-services/releases/tag/v0.49.5)
 
+{% hint style="success" %}
+**TESTNET UPDATE: MAY 2,2024**
+{% endhint %}
+
 #### What's Changed
 
 - fix: storage link management by [@tinker-michaelj](https://github.com/tinker-michaelj) in [#13056](https://github.com/hashgraph/hedera-services/pull/13056)
 
 ### [0.49.1](https://github.com/hashgraph/hedera-services/releases/tag/v0.49.1)
+
+{% hint style="success" %}
+**TESTNET UPDATE: APRIL 24, 2024**
+{% endhint %}
 
 #### What's Changed
 
@@ -99,19 +54,20 @@ Please visit the [Hedera status page](https://status.hedera.com/) for the latest
 
 ### [0.49.0](https://github.com/hashgraph/hedera-services/releases/tag/v0.49.0)
 
-#### What's changed&#x20
+#### What's changed
 
+- chore: Update throttles.json by [@rbair23](https://github.com/rbair23) in [#11339](https://github.com/hashgraph/hedera-services/pull/11339)
 - feat: address cold read issue in ExtCodeHash operation by [@lukelee-sl](https://github.com/lukelee-sl) in [#11323](https://github.com/hashgraph/hedera-services/pull/11323)
 - fix: 11348: The fix for 11231 doesn't cover ParsedBucket by [@artemananiev](https://github.com/artemananiev) in [#11349](https://github.com/hashgraph/hedera-services/pull/11349)
 - chore: Create ISS detector component by [@lpetrovic05](https://github.com/lpetrovic05) in [#11075](https://github.com/hashgraph/hedera-services/pull/11075)
 - chore: Add `orderedSolderTo` method to OutputWire by [@poulok](https://github.com/poulok) in [#11330](https://github.com/hashgraph/hedera-services/pull/11330)
 - chore: remove hashgraph demo by [@lpetrovic05](https://github.com/lpetrovic05) in [#11352](https://github.com/hashgraph/hedera-services/pull/11352)
+- feat: Migrate transaction handling to framework by [@alittley](https://github.com/alittley) in [#11144](https://github.com/hashgraph/hedera-services/pull/11144)
+- fix: broken unit test by [@kfa-aguda](https://github.com/kfa-aguda) in [#11233](https://github.com/hashgraph/hedera-services/pull/11233)
+- fix: Return invalid token even if expected decimals are present by [@mhess-swl](https://github.com/mhess-swl) in [#11342](https://github.com/hashgraph/hedera-services/pull/11342)
+- fix: 11298: VirtualMapReconnectTest fails intermittently with path not in range log message by [@artemananiev](https://github.com/artemananiev) in [#11370](https://github.com/hashgraph/hedera-services/pull/11370)
 
 **➡ See the full list of changes** [**here**](https://github.com/hashgraph/hedera-services/releases/tag/v0.49.0)**.**
-
-### **Performance Results**
-
-<figure><img src="../../.gitbook/assets/0.49_Performance Measurement Results_Extract.001.png" alt=""><figcaption></figcaption></figure>
 
 ## [v0.48](https://github.com/hashgraph/hedera-services/releases/tag/v0.48.0)
 
@@ -884,7 +840,7 @@ Approved operators can manage an owner's tokens on their behalf; this is necessa
 
 Any permissions granted in a contract through `approve()` or `setApprovalForAll()` have an equivalent HAPI `cryptoApproveAllowance` or `cryptoDeleteAllowance` expression---and this expression is externalized as a HAPI `TransactionBody` in the record stream. That is, the HIP-376 system contracts expose a subset of the native HAPI operations, only within the EVM.
 
-![](<../../.gitbook/assets/image (2).png>)
+![](<../../.gitbook/assets/image (4).png>)
 
 ## [v0.25](https://github.com/hashgraph/hedera-services/releases/tag/v0.25.0)
 
@@ -1028,7 +984,7 @@ Please also note the following deprecations in the Hedera API protobufs:
 - The [<mark style="color:purple;">`ContractUpdateTransactionBody.fileID`</mark> <mark style="color:purple;">field</mark>](https://github.com/hashgraph/hedera-protobufs/blob/main/services/contract\_update.proto#L82), which is redundant given the existence of the [<mark style="color:purple;">`ContractGetBytecode`</mark> <mark style="color:purple;">quer</mark>y](https://github.com/hashgraph/hedera-protobufs/blob/main/services/smart\_contract\_service.proto#L63).
 - The [<mark style="color:purple;">`ContractCallLocalQuery.maxResultSize`</mark> <mark style="color:purple;">field</mark>](https://github.com/hashgraph/hedera-protobufs/blob/main/services/contract\_call\_local.proto#L136), as this limit is now simply a side-effect of the given gas limit.
 
-![](../../.gitbook/assets/Performance%20Measurement%20Results\_Extract.001%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\).jpeg)
+![](https://github.com/hashgraph/hedera-docs/blob/translation-staging/.gitbook/assets/Performance%20Measurement%20Results\_Extract.001%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\)%20\\(1\\).jpeg)
 
 ## [v0.19.4](https://github.com/hashgraph/hedera-services/releases/tag/v0.19.4)
 
@@ -1074,7 +1030,7 @@ Third, please note that the `TokenService` `getTokenNftInfos` and `getAccountNft
 
 Developers will likely appreciate two other release 0.18.1 items. First, we have migrated to [Dagger2](https://dagger.dev/) for dependency injection. Second, there is a new `getExecutionTime` query in the [`NetworkService`](https://hashgraph.github.io/hedera-protobufs/#proto.NetworkService) that supports granular performance testing in development environments.
 
-![](<../../.gitbook/assets/image (3).png>)
+![](<../../.gitbook/assets/image (1) (1).png>)
 
 ## v0.18.0
 
