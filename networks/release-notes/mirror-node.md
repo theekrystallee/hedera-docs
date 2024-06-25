@@ -8,6 +8,30 @@ For the latest versions supported on each network please visit the Hedera status
 
 ## Latest Releases
 
+## [v0.105.0](https://github.com/hashgraph/hedera-mirror-node/releases/tag/v0.105.0)
+
+A design document was added for the implementation of [HIP-904](https://hips.hedera.com/HIP/hip-904.html) Friction-less Airdrops on mirror node. Please watch the [epic](https://github.com/hashgraph/hedera-mirror-node/issues/8081) to monitor the progress of airdrop development.
+
+Citus, our sharded database, continues to make progress with this release making its way to one of our two testnet clusters. We'll monitor its deployment for a period and make any necessary fixes. The ZFS CSI driver we use for Citus saw an upgrade. Finally, multiples issues were fixed with the PostgreSQl to Citus migration script.
+
+For `/api/v1/contracts/call`, the maximum data size was increased to 128 KiB to provide better Ethereum compatibility. Also, additional logic and validation was added to more closely align with consensus nodes error scenarios.
+
+### Upgrading
+
+If you're using the ZFS CSI driver, please ensure its CRDs are updated before upgrading:
+
+```
+for crd in zfsbackups zfsnodes zfsrestores zfssnapshots zfsvolumes; do kubectl patch crd $crd.zfs.openebs.io --type merge -p '{"metadata": {"annotations": {"helm.sh/resource-policy": "keep", "meta.helm.sh/release-name": "mirror", "meta.helm.sh/release-namespace": "common"}, "labels": {"app.kubernetes.io/managed-by": "Helm"}}}'; done
+```
+
+## [v0.104.0](https://github.com/hashgraph/hedera-mirror-node/releases/tag/v0.104.0)
+
+This release adds a Redis cache to the REST API to improve the performance of `/api/v1/transactions`. This functionality is currently disabled by default as we fine tune it.
+
+[HIP-857](https://hips.hedera.com/hip/hip-857) NFT Allowances API made a lot of progress this release. It's taking a bit longer than a usual API since it is our first Java-based REST API that requires some extra groundwork. This release enables the rest-java Helm chart by default allowing users to test out the NFT allowances API in all environments. While most functionality is present, please be aware that some parts are still under development. A new index was added to the NFT allowance table to speed up look-ups by spender account. The existence check for numeric entity ID was removed to improve its performance and to better support partial mirror nodes. Finally, we added initial acceptance tests to verify the API end to end.
+
+Our Citus deployment is nearing the finish line. Citus is now deployed to previewnet and it now runs both PostgreSQL and Citus deployments in parallel. Internally, we've deployed it to a mainnet staging environment with a full size database for further testing. This deployment was possible due to the dramatic increase in migration time we implemented this release. Mainnet previously took more than a month to migrate but with this release it should complete within a week or so. Expect testnet to be migrated to Citus very soon as well.
+
 ## [v0.103.0](https://github.com/hashgraph/hedera-mirror-node/releases/tag/v0.103.0)
 
 This release adds support for making metadata information from [HIP-646](https://hips.hedera.com/hip/hip-646), [HIP-657](https://hips.hedera.com/hip/hip-657), and [HIP-765](https://hips.hedera.com/hip/hip-765) available in the REST API. In particular, this adds a base64 encoded `metadata` field to the `/api/v1/tokens` endpoint. It also adds `metadata` and `metadata_key` fields to the `/api/v1/tokens/{id}` endpoint.

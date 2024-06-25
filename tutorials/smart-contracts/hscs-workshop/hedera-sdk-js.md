@@ -34,7 +34,7 @@ At the time of writing, July 2023, these Hedera SDKs are available in the follow
 * [Hedera SDK Go](https://github.com/hashgraph/hedera-sdk-go)
 * [Hedera SDK Swift](https://github.com/hashgraph/hedera-sdk-swift)
 
-Please refer to [SDKs](https://github.com/hashgraph/hedera-docs/blob/translation-staging/hedera/sdks-and-apis/sdks/README.md) for an up to date list of SDKs, including additional community-maintained SDKs.
+Please refer to [SDKs](https://github.com/theekrystallee/hedera-docs/blob/master/hedera/sdks-and-apis/sdks/README.md) for an up to date list of SDKs, including additional community-maintained SDKs.
 
 </details>
 
@@ -42,7 +42,7 @@ In this tutorial, you will be using Hedera SDK JS to interact with HSCS. Specifi
 
 ## Prerequisites
 
-* ✅ Complete the [Introduction](https://github.com/hashgraph/hedera-docs/blob/translation-staging/tutorials/smart-contracts/hscs-workshop/00-intro.md) section of this same tutorial.
+* ✅ Complete the [Introduction](https://github.com/theekrystallee/hedera-docs/blob/master/tutorials/smart-contracts/hscs-workshop/00-intro.md) section of this same tutorial.
 
 ## Set up the project
 

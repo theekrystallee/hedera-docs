@@ -28,12 +28,11 @@ Create a new Gradle project and name it `HederaExamples`. Add the following depe
 ```gradle
 dependencies {
 
-    implementation 'com.hedera.hashgraph:sdk:2.29.0'
-    implementation 'io.grpc:grpc-netty-shaded:1.46.0'
+    implementation 'com.hedera.hashgraph:sdk:2.32.0'
+    implementation 'io.grpc:grpc-netty-shaded:1.57.2'
     implementation 'io.github.cdimascio:dotenv-java:2.3.2'
-    implementation 'org.slf4j:slf4j-nop:2.0.3'
+    implementation 'org.slf4j:slf4j-nop:2.0.9'
     implementation 'com.google.code.gson:gson:2.8.8'
-
 }
 ```
 {% endcode %}
@@ -48,12 +47,12 @@ Create a new Maven project and name it `HederaExamples`. Add the following depen
         <dependency>
             <groupId>com.hedera.hashgraph</groupId>
             <artifactId>sdk</artifactId>
-            <version>2.29.0</version>
+            <version>2.32.0</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty-shaded</artifactId>
-            <version>1.46.0</version>
+            <version>1.57.2</version>
         </dependency>
         <dependency>
             <groupId>io.github.cdimascio</groupId>
@@ -63,7 +62,7 @@ Create a new Maven project and name it `HederaExamples`. Add the following depen
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
-            <version>2.0.3</version>
+            <version>2.0.9</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -124,19 +123,19 @@ mkdir hedera-go-examples && cd hedera-go-examples
 Create a new Java class and name it something like _`HederaExamples`_. Import the following classes to use in your example:
 
 ```java
-import com.hedera.hashgraph.sdk.AccountId;
-import com.hedera.hashgraph.sdk.Client;
-import com.hedera.hashgraph.sdk.PrivateKey;
-import io.github.cdimascio.dotenv.Dotenv;
-import com.hedera.hashgraph.sdk.HederaPreCheckStatusException;
-import com.hedera.hashgraph.sdk.HederaReceiptStatusException;
-import com.hedera.hashgraph.sdk.TransactionResponse;
-import com.hedera.hashgraph.sdk.TransferTransaction;
-import com.hedera.hashgraph.sdk.PublicKey;
-import com.hedera.hashgraph.sdk.AccountCreateTransaction;
 import com.hedera.hashgraph.sdk.Hbar;
-import com.hedera.hashgraph.sdk.AccountBalanceQuery;
+import com.hedera.hashgraph.sdk.Client;
+import io.github.cdimascio.dotenv.Dotenv;
+import com.hedera.hashgraph.sdk.AccountId;
+import com.hedera.hashgraph.sdk.PublicKey;
+import com.hedera.hashgraph.sdk.PrivateKey;
 import com.hedera.hashgraph.sdk.AccountBalance;
+import com.hedera.hashgraph.sdk.AccountBalanceQuery;
+import com.hedera.hashgraph.sdk.TransferTransaction;
+import com.hedera.hashgraph.sdk.TransactionResponse;
+import com.hedera.hashgraph.sdk.ReceiptStatusException;
+import com.hedera.hashgraph.sdk.PrecheckStatusException;
+import com.hedera.hashgraph.sdk.AccountCreateTransaction;
 
 import java.util.concurrent.TimeoutException;
 ```
@@ -177,11 +176,29 @@ Your project structure should look something like this:
 {% endtab %}
 
 {% tab title="Go" %}
-Create a `hedera_examples.go` file in `hedera-go-examples` directory. You will write all of your code in this file.
+Create a `hedera_examples.go` file in `hedera-go-examples` root directory. You will write all of your code in this file.
 
-{% hint style="info" %}
-_**Note:** Install the Go SDK_ [_here_](https://github.com/hashgraph/hedera-sdk-go) _and the DotEnv package_ [_here_](https://github.com/joho/godotenv) _before moving forward._
-{% endhint %}
+```bash
+touch hedera_examples.go
+```
+
+Create the Go "module" file by running the below command. The `go.mod` file defines the module's properties and dependencies and provides a way to manage versioning for Go projects.
+
+```go
+go mod init hedera_examples.go
+```
+
+Install the [Go SDK](https://github.com/hashgraph/hedera-sdk-go):
+
+```go-module
+go get github.com/hashgraph/hedera-sdk-go/v2@latest
+```
+
+And the [DotEnv package](https://github.com/joho/godotenv):
+
+```go-module
+go get github.com/joho/godotenv
+```
 
 Import the following packages to your `hedera_examples.go` file:
 
@@ -413,36 +430,38 @@ Next, you will learn how to [create an account](create-an-account.md).
 
 <summary>Java</summary>
 
-<pre class="language-java" data-title="HederaExamples.java"><code class="lang-java">import com.hedera.hashgraph.sdk.AccountId;
+<pre class="language-java" data-title="HederaExamples.java"><code class="lang-java">import com.hedera.hashgraph.sdk.Hbar;
 import com.hedera.hashgraph.sdk.Client;
-import com.hedera.hashgraph.sdk.PrivateKey;
 import io.github.cdimascio.dotenv.Dotenv;
-import com.hedera.hashgraph.sdk.HederaPreCheckStatusException;
-import com.hedera.hashgraph.sdk.HederaReceiptStatusException;
-import com.hedera.hashgraph.sdk.TransactionResponse;
-import com.hedera.hashgraph.sdk.TransferTransaction;
+import com.hedera.hashgraph.sdk.AccountId;
 import com.hedera.hashgraph.sdk.PublicKey;
-import com.hedera.hashgraph.sdk.AccountCreateTransaction;
-import com.hedera.hashgraph.sdk.Hbar;
-import com.hedera.hashgraph.sdk.AccountBalanceQuery;
+import com.hedera.hashgraph.sdk.PrivateKey;
 import com.hedera.hashgraph.sdk.AccountBalance;
+import com.hedera.hashgraph.sdk.AccountBalanceQuery;
+import com.hedera.hashgraph.sdk.TransferTransaction;
+import com.hedera.hashgraph.sdk.TransactionResponse;
+import com.hedera.hashgraph.sdk.ReceiptStatusException;
+import com.hedera.hashgraph.sdk.PrecheckStatusException;
+import com.hedera.hashgraph.sdk.AccountCreateTransaction;
 import java.util.concurrent.TimeoutException;
 
 public class HederaExamples {
 
         public static void main(String[] args) {
                 
-                //Grab your Hedera Testnet account ID and private key
-                AccountId myAccountId = AccountId.fromString(Dotenv.load().get("MY_ACCOUNT_ID"));+
-                PrivateKey myPrivateKey = PrivateKey.fromString(Dotenv.load().get("MY_PRIVATE_KEY"));
-                //Create your Hedera Testnet client
+        //Grab your Hedera Testnet account ID and private key
+        AccountId myAccountId = AccountId.fromString(Dotenv.load().get("MY_ACCOUNT_ID"));+
+        PrivateKey myPrivateKey = PrivateKey.fromString(Dotenv.load().get("MY_PRIVATE_KEY"));
+        //Create your Hedera Testnet client
         
-<strong>                Client client = Client.forTestnet();
-</strong>                client.setOperator(myAccountId, myPrivateKey);
+<strong>        Client client = Client.forTestnet();
+</strong>        client.setOperator(myAccountId, myPrivateKey);
         
-                // Set default max transaction fee &#x26; max query payment
-                client.setDefaultMaxTransactionFee(new Hbar(100)); 
-                client.setMaxQueryPayment(new Hbar(50)); 
+        // Set default max transaction fee &#x26; max query payment
+        client.setDefaultMaxTransactionFee(new Hbar(100)); 
+        client.setMaxQueryPayment(new Hbar(50)); 
+        
+        System.out.println("Client setup complete.");
     }
 }
 </code></pre>
@@ -456,12 +475,8 @@ public class HederaExamples {
 {% code title="index.js" %}
 ```javascript
 const {
-  Client,
-  PrivateKey,
-  AccountCreateTransaction,
-  AccountBalanceQuery,
   Hbar,
-  TransferTransaction,
+  Client,
 } = require("@hashgraph/sdk");
 
 require("dotenv").config();
@@ -488,7 +503,9 @@ async function environmentSetup() {
   client.setDefaultMaxTransactionFee(new Hbar(100));
 
   //Set the maximum payment for queries (in Hbar)
-  client.setMaxQueryPayment(new Hbar(50));
+  client.setDefaultMaxQueryPayment(new Hbar(50));
+  
+  console.log("Client setup complete.");
 }
 environmentSetup();
 ```
@@ -538,6 +555,8 @@ func main() {
 	// Set default max transaction fee & max query payment
 	client.SetDefaultMaxTransactionFee(hedera.HbarFrom(100, hedera.HbarUnits.Hbar))
 	client.SetDefaultMaxQueryPayment(hedera.HbarFrom(50, hedera.HbarUnits.Hbar))
+	
+	fmt.Println(“Client setup complete.”)
 }
 ```
 {% endcode %}

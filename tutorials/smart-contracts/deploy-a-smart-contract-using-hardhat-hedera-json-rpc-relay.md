@@ -318,11 +318,11 @@ LOCAL_NODE_ENDPOINT='http://localhost:7546/'
 
 * **`LOCAL_NODE_OPERATOR_PRIVATE_KEY`**: This is your Alias ECDSA hex-encoded private key for your Hedera Local Node. Replace the example value with your actual private key. Once you set up your local node and run the command to start, the accounts list for alias ECDSA private keys will be generated and returned to your console (see screenshot below). Replace the example value with your actual private key.
 
-<figure><img src="../../.gitbook/assets/ecdsa account alias cli.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ecdsa-account-alias-cli.png" alt="" width="563"><figcaption></figcaption></figure>
 
 * **`LOCAL_NODE_ENDPOINT`**: This is the URL endpoint for your Hedera Local Node's JSON-RPC Relay. Typically, this would be your `localhost` followed by the port number (`http://localhost:7546/`).
 
-<figure><img src="../../.gitbook/assets/local node address 7546.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/local-node-address-7546.png" alt="" width="563"><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="testnet" %}
@@ -343,7 +343,7 @@ TESTNET_ENDPOINT='https://testnet.hashio.io/api'
 
 * **`TESTNET_OPERATOR_PRIVATE_KEY`**: This is your ECDSA hex-encoded private key for the Hedera Testnet. Replace the example value with your actual private key.
 
-<figure><img src="../../.gitbook/assets/portal hex (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/portal-hex.png" alt="" width="563"><figcaption></figcaption></figure>
 
 * **`TESTNET_ENDPOINT`**: This is the URL endpoint for the Hedera Testnet's JSON-RPC Relay. Replace the example URL with the one you're using.
 
@@ -498,7 +498,7 @@ Compiled 1 contract successfully
 
 The compiled artifacts will be saved in the `artifacts/` directory by default, or whatever your [configured artifacts path](https://hardhat.org/hardhat-runner/docs/config#path-configuration) is. The metadata file generated in this directory will be used for the [smart contract verification process](../../core-concepts/smart-contracts/verifying-smart-contracts-beta.md) in a later step.
 
-<figure><img src="../../.gitbook/assets/hardhat artifacts metadata file.png" alt="" width="373"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/hardhat-artifacts-metadata-file.png" alt="" width="373"><figcaption></figcaption></figure>
 
 After the initial compilation, if you don't modify any files, nothing will be compiled when you run the `compile` command. To force a compilation you can use the `--force` flag or run `npx hardhat clean` to clear the cache and delete the artifacts to recompile.
 
