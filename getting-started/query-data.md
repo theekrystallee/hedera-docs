@@ -110,7 +110,7 @@ fmt.Println("The hbar account balance for this account is", newAccountBalance.Hb
 {% endtabs %}
 
 {% hint style="success" %}
-:star: **Congratulations! You have successfully transferred **_**HBAR**_** to another account on the Hedera Testnet! If you have followed the tutorial from the beginning, you have completed the following thus far:**&#x20;
+:star: **Congratulations! You have successfully transferred \_HBAR**\_\*\* to another account on the Hedera Testnet! If you have followed the tutorial from the beginning, you have completed the following thus far:\*\*
 
 * Set up your Hedera environment to submit transactions and queries.
 * Created an account.
@@ -129,91 +129,89 @@ Your complete code file should look something like this:
 
 <summary>Java</summary>
 
-{% code fullWidth="true" %}
 ```java
-import com.hedera.hashgraph.sdk.Hbar;
-import com.hedera.hashgraph.sdk.Client;
-import io.github.cdimascio.dotenv.Dotenv;
 import com.hedera.hashgraph.sdk.AccountId;
-import com.hedera.hashgraph.sdk.PublicKey;
+import com.hedera.hashgraph.sdk.HederaPreCheckStatusException;
+import com.hedera.hashgraph.sdk.HederaReceiptStatusException;
 import com.hedera.hashgraph.sdk.PrivateKey;
-import com.hedera.hashgraph.sdk.AccountBalance;
-import com.hedera.hashgraph.sdk.AccountBalanceQuery;
-import com.hedera.hashgraph.sdk.TransferTransaction;
+import com.hedera.hashgraph.sdk.Client;
 import com.hedera.hashgraph.sdk.TransactionResponse;
-import com.hedera.hashgraph.sdk.ReceiptStatusException;
-import com.hedera.hashgraph.sdk.PrecheckStatusException;
+import com.hedera.hashgraph.sdk.PublicKey;
 import com.hedera.hashgraph.sdk.AccountCreateTransaction;
+import com.hedera.hashgraph.sdk.Hbar;
+import com.hedera.hashgraph.sdk.AccountBalanceQuery;
+import com.hedera.hashgraph.sdk.AccountBalance;
+import com.hedera.hashgraph.sdk.TransferTransaction;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.concurrent.TimeoutException;
 
 public class HederaExamples {
 
-        public static void main(String[] args)
-                        throws TimeoutException, PrecheckStatusException, ReceiptStatusException {
+    public static void main(String[] args) throws TimeoutException, HederaPreCheckStatusException, HederaReceiptStatusException {
 
-                // Grab your Hedera testnet account ID and private key
-                AccountId myAccountId = AccountId.fromString(Dotenv.load().get("MY_ACCOUNT_ID"));
-                PrivateKey myPrivateKey = PrivateKey.fromString(Dotenv.load().get("MY_PRIVATE_KEY"));
+        //Grab your Hedera testnet account ID and private key
+        AccountId myAccountId = AccountId.fromString(Dotenv.load().get("MY_ACCOUNT_ID"));
+        PrivateKey myPrivateKey = PrivateKey.fromString(Dotenv.load().get("MY_PRIVATE_KEY"));
+        
+        // Create your connection to the Hedera network
+        Client client = Client.forTestnet();
 
-                // Create your connection to the Hedera network
-                Client client = Client.forTestnet();
+        //Set your account as the client's operator
+        client.setOperator(myAccountId, myPrivateKey);
+  
+        // Set default max transaction fee & max query payment
+        client.setMaxTransactionFee(new Hbar(100));
+        client.setMaxQueryPayment(new Hbar(50));
 
-                // Set your account as the client's operator
-                client.setOperator(myAccountId, myPrivateKey);
+        // Generate a new key pair
+        PrivateKey newAccountPrivateKey = PrivateKey.generateED25519();
+        PublicKey newAccountPublicKey = newAccountPrivateKey.getPublicKey();
 
-                // Set default max transaction fee & max query payment
-                client.setDefaultMaxTransactionFee(new Hbar(100));
-                client.setDefaultMaxQueryPayment(new Hbar(50));
+        //Create new account and assign the public key
+        TransactionResponse newAccount = new AccountCreateTransaction()
+                .setKey(newAccountPublicKey)
+                .setInitialBalance( Hbar.fromTinybars(1000))
+                .execute(client);
 
-                // Generate a new key pair
-                PrivateKey newAccountPrivateKey = PrivateKey.generateED25519();
-                PublicKey newAccountPublicKey = newAccountPrivateKey.getPublicKey();
+        // Get the new account ID
+        AccountId newAccountId = newAccount.getReceipt(client).accountId;
+        
+        System.out.println("\nNew account ID: " +newAccountId);
 
-                // Create new account and assign the public key
-                TransactionResponse newAccount = new AccountCreateTransaction()
-                                .setKey(newAccountPublicKey)
-                                .setInitialBalance(Hbar.fromTinybars(1000))
-                                .execute(client);
+        //Check the new account's balance
+        AccountBalance accountBalance = new AccountBalanceQuery()
+                .setAccountId(newAccountId)
+                .execute(client);
+        
+        System.out.println("New account balance is: " +accountBalance.hbars);
 
-                // Get the new account ID
-                AccountId newAccountId = newAccount.getReceipt(client).accountId;
 
-                System.out.println("\nNew account ID: " + newAccountId);
+        //Transfer HBAR
+        TransactionResponse sendHbar = new TransferTransaction()
+                .addHbarTransfer(myAccountId, Hbar.fromTinybars(-1000))
+                .addHbarTransfer(newAccountId, Hbar.fromTinybars(1000))
+                .execute(client);
 
-                // Check the new account's balance
-                AccountBalance accountBalance = new AccountBalanceQuery()
-                                .setAccountId(newAccountId)
-                                .execute(client);
+        System.out.println("The transfer transaction from my account to the new account was: " +sendHbar.getReceipt(client).status);
 
-                System.out.println("New account balance is: " + accountBalance.hbars);
+        //Request the cost of the query
+        Hbar queryCost = new AccountBalanceQuery()
+                .setAccountId(newAccountId)
+                .getCost(client);
 
-                // Transfer HBAR
-                TransactionResponse sendHbar = new TransferTransaction()
-                                .addHbarTransfer(myAccountId, Hbar.fromTinybars(-1000))
-                                .addHbarTransfer(newAccountId, Hbar.fromTinybars(1000))
-                                .execute(client);
+        System.out.println("The cost of this query: " +queryCost);
 
-                System.out.println("\nThe transfer transaction was: " + sendHbar.getReceipt(client).status);
+        //Check the new account's balance
+        AccountBalance accountBalanceNew = new AccountBalanceQuery()
+                .setAccountId(newAccountId)
+                .execute(client);
 
-                // Request the cost of the query
-                Hbar queryCost = new AccountBalanceQuery()
-                                .setAccountId(newAccountId)
-                                .getCost(client);
+        System.out.println("The account balance after the transfer: " +accountBalanceNew.hbars);
 
-                System.out.println("\nThe cost of this query: " + queryCost);
-
-                // Check the new account's balance
-                AccountBalance accountBalanceNew = new AccountBalanceQuery()
-                                .setAccountId(newAccountId)
-                                .execute(client);
-
-                System.out.println("The account balance after the transfer: " + accountBalanceNew.hbars + "\n");
-        }
+    }
 }
-
 ```
-{% endcode %}
 
 </details>
 
@@ -223,13 +221,13 @@ public class HederaExamples {
 
 ```javascript
 const {
-  Hbar,
   Client,
   PrivateKey,
   AccountCreateTransaction,
   AccountBalanceQuery,
+  Hbar,
   TransferTransaction,
-} = require("@hashgraph/sdk
+} = require("@hashgraph/sdk");
 require("dotenv").config();
 
 async function environmentSetup() {
@@ -251,8 +249,8 @@ async function environmentSetup() {
   client.setOperator(myAccountId, myPrivateKey);
 
   // Set default max transaction fee & max query payment
-  client.setDefaultMaxTransactionFee(new Hbar(100));
-  client.setDefaultMaxQueryPayment(new Hbar(50));
+  client.setMaxTransactionFee(new Hbar(100));
+  client.setMaxQueryPayment(new Hbar(50));
 
   // Create new keys
   const newAccountPrivateKey = PrivateKey.generateED25519();
@@ -314,6 +312,7 @@ async function environmentSetup() {
   );
 }
 environmentSetup();
+
 ```
 
 </details>
