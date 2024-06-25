@@ -137,19 +137,19 @@ Your complete code file should look something like this:
 {% code title="HederaExamples.java" %}
 
 ```java
-import com.hedera.hashgraph.sdk.Hbar;
-import com.hedera.hashgraph.sdk.Client;
-import io.github.cdimascio.dotenv.Dotenv;
 import com.hedera.hashgraph.sdk.AccountId;
-import com.hedera.hashgraph.sdk.PublicKey;
+import com.hedera.hashgraph.sdk.HederaPreCheckStatusException;
+import com.hedera.hashgraph.sdk.HederaReceiptStatusException;
 import com.hedera.hashgraph.sdk.PrivateKey;
-import com.hedera.hashgraph.sdk.AccountBalance;
-import com.hedera.hashgraph.sdk.AccountBalanceQuery;
-import com.hedera.hashgraph.sdk.TransferTransaction;
+import com.hedera.hashgraph.sdk.Client;
 import com.hedera.hashgraph.sdk.TransactionResponse;
-import com.hedera.hashgraph.sdk.ReceiptStatusException;
-import com.hedera.hashgraph.sdk.PrecheckStatusException;
+import com.hedera.hashgraph.sdk.PublicKey;
 import com.hedera.hashgraph.sdk.AccountCreateTransaction;
+import com.hedera.hashgraph.sdk.Hbar;
+import com.hedera.hashgraph.sdk.AccountBalanceQuery;
+import com.hedera.hashgraph.sdk.AccountBalance;
+import com.hedera.hashgraph.sdk.TransferTransaction;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.concurrent.TimeoutException;
 
@@ -168,8 +168,8 @@ public class HederaExamples {
         client.setOperator(myAccountId, myPrivateKey);
   
         // Set default max transaction fee & max query payment
-        client.setDefaultMaxTransactionFee(new Hbar(100));
-        client.setDefaultMaxQueryPayment(new Hbar(50));
+        client.setMaxTransactionFee(new Hbar(100));
+        client.setMaxQueryPayment(new Hbar(50));
 
         // Generate a new key pair
         PrivateKey newAccountPrivateKey = PrivateKey.generateED25519();
@@ -215,12 +215,12 @@ public class HederaExamples {
 
 ```javascript
 const {
-  Hbar,
   Client,
   PrivateKey,
-  AccountBalanceQuery,
-  TransferTransaction,
   AccountCreateTransaction,
+  AccountBalanceQuery,
+  Hbar,
+  TransferTransaction,
 } = require("@hashgraph/sdk");
 require("dotenv").config();
 
@@ -243,8 +243,8 @@ async function environmentSetup() {
   client.setOperator(myAccountId, myPrivateKey);
 
   // Set default max transaction fee & max query payment
-  client.setDefaultMaxTransactionFee(new Hbar(100));
-  client.setDefaultMaxQueryPayment(new Hbar(50));
+  client.setMaxTransactionFee(new Hbar(100));
+  client.setMaxQueryPayment(new Hbar(50));
 
   // Create new keys
   const newAccountPrivateKey = PrivateKey.generateED25519();
@@ -405,10 +405,6 @@ func main() {
 #### Sample output:
 
 ```bash
-New account ID: 0.0.4382765
-
-New account balance is: 1000 tinybars.
-
 The transfer transaction from my account to the new account was: SUCCESS
 ```
 
