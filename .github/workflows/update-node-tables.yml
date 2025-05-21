@@ -33,3 +33,5 @@ jobs:
           body: "Automated update of node tables."
           labels: automated-pr
           delete-branch: true
+          add-paths: |
+            networks/mainnet/mainnet-nodes/README.md
