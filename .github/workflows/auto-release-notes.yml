@@ -43,3 +43,5 @@ jobs:
           body: "Automated update of consensus-node release notes."
           labels: automated-pr
           delete-branch: true
+          add-paths: |
+            networks/release-notes/services.md
