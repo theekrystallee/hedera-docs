@@ -28,7 +28,7 @@ env:
 
 jobs:
   add-release-notes:
-    runs-on: hashgraph-docs-linux-medium
+    runs-on: ubuntu-latest
 
     steps:
       - name: Harden the runner
